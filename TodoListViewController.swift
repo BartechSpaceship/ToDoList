@@ -13,13 +13,20 @@ class TodoListViewController: UITableViewController  {
 
     var itemArray = ["Find Bag of cereal", "Buy Eggs", "Hubert"]
     
+    //Stores data inside of the app
+    let defaults = UserDefaults.standard
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       
+        if let items = defaults.array(forKey: "ToDoListArray") as? [String] {
+            itemArray = items
+        }
         // Do any additional setup after loading the view.
+        
     }
     //MARK: - TableView Datasource Methods
+    
     //This creates a cell to be used "Dequeueing"
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath)
@@ -60,6 +67,8 @@ class TodoListViewController: UITableViewController  {
             //What will happen once the user clicks item button on UIAlert
             
             self.itemArray.append(textField.text!)
+            
+            self.defaults.set(self.itemArray, forKey: "ToDoListArray")
             //need to reload data otherwise it will not show up in the array 
             self.tableView.reloadData()
         }
