@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -25,6 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This occurs shortly after the scene enters the background, or when its session is discarded.
         // Release any resources associated with this scene that can be re-created the next time the scene connects.
         // The scene may re-connect later, as its session was not neccessarily discarded (see `application:didDiscardSceneSessions` instead).
+        
         print("applicationWasTerminated")
     }
 
@@ -45,7 +47,30 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidEnterBackground(_ scene: UIScene) {
         print("applicationDidEnterBackground")
     }
-
-
+//    lazy var persistentContainer: NSPersistentContainer = {
+//        //lazy only gets loaded up when it is needed ( Gets a memory benefit )
+//
+//           let container = NSPersistentContainer(name: "DataModel")
+//           container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+//               if let error = error as NSError? {
+//
+//                   fatalError("Unresolved error \(error), \(error.userInfo)")
+//               }
+//           })
+//           return container
+//       }()
+//    func saveContext () {
+//           let context = persistentContainer.viewContext
+//           if context.hasChanges {
+//               do {
+//                   try context.save()
+//               } catch {
+//
+//                   let nserror = error as NSError
+//                   fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+//               }
+//
+//        }
+//    }
 }
 
